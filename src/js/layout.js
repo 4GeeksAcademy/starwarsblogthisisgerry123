@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { ScrollToTop } from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
@@ -15,16 +15,18 @@ const Layout = () => {
 
     return (
         <div>
-            <ScrollToTop>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/demo" element={<Demo />} />
-                    <Route path="/details/:type/:id" element={<Details />} />
-                    <Route path="*" element={<h1>Not found!</h1>} />
-                </Routes>
-                <Footer />
-            </ScrollToTop>
+            <HashRouter basename={basename}>
+                <ScrollToTop>
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/demo" element={<Demo />} />
+                        <Route path="/details/:type/:id" element={<Details />} />
+                        <Route path="*" element={<h1>Not found!</h1>} />
+                    </Routes>
+                    <Footer />
+                </ScrollToTop>
+            </HashRouter>
         </div>
     );
 };

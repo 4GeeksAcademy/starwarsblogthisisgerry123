@@ -1,14 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
-import "../index.css"; 
+import "../styles/index.css"; 
 import Layout from './layout';
 
-const root = createRoot(document.getElementById("app")); // Ensure this ID matches the div in your HTML
+const root = createRoot(document.querySelector("#app"))
 
-root.render(
-  <BrowserRouter>
-    <Layout />
-  </BrowserRouter>
-);
+root.render(<Layout />);

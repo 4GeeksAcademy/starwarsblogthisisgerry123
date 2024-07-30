@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import "../card.css";
+import "../../styles/card.css";
 
 const Card = ({ item, type, onFavoriteClick }) => {
     const itemId = item.url.match(/\/([0-9]+)\/$/)[1];
