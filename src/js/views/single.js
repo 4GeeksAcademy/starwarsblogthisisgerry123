@@ -6,12 +6,25 @@ import { Context } from "../store/appContext";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	const [details, setDetails] = useState(null);
+
+	useEffect(() => {
+		fetch(`https://swapi.dev/api/${params.type}/${params.id}/`)
+			.then(res => res.json())
+			.then(data => setDetails(data));
+	}, [params.type, params.id]);
+
 	return (
 		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
-
-			<hr className="my-4" />
-
+			{details ? (
+				<>
+					<h1 className="display-4">{details.name}</h1>
+					<p>{params.type === "character" ? `Gender: ${details.gender}` : `Climate: ${details.climate}`}</p>
+					<hr className="my-4" />
+				</>
+			) : (
+				<p>Loading...</p>
+			)}
 			<Link to="/">
 				<span className="btn btn-primary btn-lg" href="#" role="button">
 					Back home

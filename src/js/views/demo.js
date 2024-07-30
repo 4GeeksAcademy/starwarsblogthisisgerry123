@@ -39,5 +39,5 @@ export const Demo = () => {
 				<button className="btn btn-primary">Back home</button>
 			</Link>
 		</div>
-	);
+	)
 };

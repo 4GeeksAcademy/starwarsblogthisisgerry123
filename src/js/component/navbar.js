@@ -1,17 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
-		</nav>
-	);
+    const { store, actions } = useContext(Context);
+
+    return (
+        <nav className="navbar navbar-light bg-light">
+            <a className="navbar-brand" href="/">Home</a>
+            <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="favoritesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Favorites {store.favorites.length}
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="favoritesDropdown">
+                    {store.favorites.map((favorite, index) => (
+                        <li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
+                            {favorite.name}
+                            <FontAwesomeIcon icon={faTrash} onClick={() => actions.removeFavorite(favorite)} style={{ cursor: "pointer", color: "#000000" }} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </nav>
+    );
 };

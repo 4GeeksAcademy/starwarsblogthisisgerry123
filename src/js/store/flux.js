@@ -1,45 +1,42 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
 	return {
-		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+	  store: {
+		characters: [],
+		planets: [],
+		species: [],
+		favorites: [],
+	  },
+	  actions: {
+		loadCharacters: () => {
+		  fetch("https://swapi.dev/api/people/")
+			.then((response) => response.json())
+			.then((data) => setStore({ characters: data.results }));
 		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
+		loadPlanets: () => {
+		  fetch("https://swapi.dev/api/planets/")
+			.then((response) => response.json())
+			.then((data) => setStore({ planets: data.results }));
+		},
+		loadSpecies: () => {
+		  fetch("https://swapi.dev/api/species/")
+			.then((response) => response.json())
+			.then((data) => setStore({ species: data.results }));
+		},
+		addFavorite: (item) => {
+		  const store = getStore();
+		  if (!store.favorites.some((fav) => fav.url === item.url)) {
+			setStore({ favorites: [...store.favorites, item] });
+		  }
+		},
+		removeFavorite: (item) => {
+		  const store = getStore();
+		  setStore({
+			favorites: store.favorites.filter((fav) => fav.url !== item.url),
+		  });
+		},
+	  },
 	};
-};
-
-export default getState;
+  };
+  
+  export default getState;
+  

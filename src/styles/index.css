@@ -1,3 +1,18 @@
-/* 
-    General Styles
-*/
+body {
+    padding-top: 20px;
+  }
+  
+  h2 {
+    color: red;
+    text-align: left;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  
