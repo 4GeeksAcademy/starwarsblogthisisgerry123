@@ -8,12 +8,12 @@ const Card = ({ item, type, onFavoriteClick }) => {
     const itemId = item.url.match(/\/([0-9]+)\/$/)[1];
 
     return (
-        <div className="card m-2" style={{ width: "18rem" }}>
+        <div className="card m-2" style={{ minWidth: "15rem" }}>
             <img
                 src={`https://starwars-visualguide.com/assets/img/${type}/${itemId}.jpg`}
                 className="card-img-top"
                 alt={item.name}
-                style={{ height: "200px", objectFit: "cover" }}
+                style={{ objectFit: "cover" }}
             />
             <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>

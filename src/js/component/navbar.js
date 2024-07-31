@@ -7,7 +7,7 @@ export const Navbar = () => {
     const { store, actions } = useContext(Context);
 
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-light px-5">
             <a className="navbar-brand" href="/">Home</a>
             <div className="dropdown">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="favoritesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
