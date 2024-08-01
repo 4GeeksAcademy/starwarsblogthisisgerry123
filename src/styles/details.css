@@ -1,0 +1,55 @@
+.container {
+    margin-top: 20px;
+}
+
+.details-info {
+    border-top: 2px solid red;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.details-info h6 {
+    color: red;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.details-info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+
+
+
+/* USE WITH ATTEMPT TWO
+
+/* .container {
+    margin-top: 20px;
+}
+
+.card {
+    margin: auto;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card img {
+    margin-bottom: 20px;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.btn {
+    margin-top: 20px;
+} */

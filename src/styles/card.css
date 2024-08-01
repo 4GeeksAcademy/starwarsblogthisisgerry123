@@ -10,4 +10,7 @@
     margin: 5px;
     width: 18rem;
   }
-  
+ FontAwesomeIcon{
+    color: red;
+    background-color: red;
+  }
