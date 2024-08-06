@@ -19,7 +19,7 @@ export const Single = props => {
 			{details ? (
 				<>
 					<h1 className="display-4">{details.name}</h1>
-					<p>{params.type === "character" ? `Gender: ${details.gender}` : `Climate: ${details.climate}`}</p>
+					<p>{params.type === "person" ? `Gender: ${details.gender}` : `Climate: ${details.climate}`}</p>
 					<hr className="my-4" />
 				</>
 			) : (
