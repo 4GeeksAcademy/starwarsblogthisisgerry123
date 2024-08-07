@@ -1,78 +1,165 @@
-
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
+import {
+  useParams,
+  Link,
+  UNSAFE_enhanceManualRouteObjects,
+} from "react-router-dom";
 import "../../styles/details.css";
+import TatooineImg from "../../img/Tatooine.jpg";
 
 const Details = () => {
-    const { type, id } = useParams();
-    const [details, setDetails] = useState(null);
+  const { store, actions } = useContext(Context);
+  const { type, id } = useParams();
 
-    useEffect(() => {
-        fetch(`https://www.swapi.tech/api/${type}/${id}`)
-            .then(res => res.json())
-            .then(data => setDetails(data.result.properties))
-            .catch(err => console.error(err));
-    }, [type, id]);
+  const index = parseInt(id) - 1;
 
-    return (
-        <div className="container">
-            {details ? (
-                <>
-                    <div className="row my-4">
-                        <div className="col-md-4">
-                            <img
-                                src={`https://starwars-visualguide.com/assets/img/${type}/${id}.jpg`}
-                                className="img-fluid"
-                                alt={details.name}
-                                style={{ objectFit: "cover" }}
-                            />
-                        </div>
-                        <div className="col-md-8">
-                            <h1 className="display-4">{details.name}</h1>
-                            <p className="lead">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="row details-info">
-                        <div className="col-md-2">
-                            <h6>Name</h6>
-                            <p>{details.name}</p>
-                        </div>
-                        <div className="col-md-2">
-                            <h6>Birth Year</h6>
-                            <p>{details.birth_year}</p>
-                        </div>
-                        <div className="col-md-2">
-                            <h6>Gender</h6>
-                            <p>{details.gender}</p>
-                        </div>
-                        <div className="col-md-2">
-                            <h6>Height</h6>
-                            <p>{details.height}</p>
-                        </div>
-                        <div className="col-md-2">
-                            <h6>Skin Color</h6>
-                            <p>{details.skin_color}</p>
-                        </div>
-                        <div className="col-md-2">
-                            <h6>Eye Color</h6>
-                            <p>{details.eye_color}</p>
-                        </div>
-                    </div>
-                    
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-            <Link to="/" className="btn btn-primary my-4">Back home</Link>
+  const item =
+    type === "characters"
+      ? store.characters[index]
+      : type === "planets"
+      ? store.planets[index]
+      : store.species[index];
+
+  const imgUrl =
+    item.name === "Tatooine"
+      ? TatooineImg
+      : `https://starwars-visualguide.com/assets/img/${type}/${parseInt(
+          id
+        )}.jpg`;
+
+  // useEffect(() => {
+  //     fetch(`https://www.swapi.tech/api/${type}/${id}`)
+  //         .then(res => res.json())
+  //         .then(data => setDetails(data.result.properties))
+  //         .catch(err => console.error(err));
+  // }, [type, id]);
+  console.log(imgUrl);
+  return (
+    <div className="container">
+      <>
+        <div className="row my-4">
+          <div className="col-md-4">
+            <img
+              src={imgUrl}
+              className="img-fluid"
+              alt={item.name}
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div className="col-md-8 detail-main">
+            <h1 className="display-4">{item.name}</h1>
+            <p className="lead">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi.
+            </p>
+          </div>
         </div>
-    );
+        <div className="row details-info">
+          <div className="col-md-2">
+            <h6>Name</h6>
+            <p>{item.name}</p>
+          </div>
+          <div className="col-md-2">
+            <h6>
+                {
+                    type == "characters" ? "Gender" : 
+                    type == "planets" ? "Population" :
+                    "Classification"
+                }
+            </h6>
+            <p>
+                {
+                    type == "characters" ? item.gender : 
+                    type == "planets" ? item.population :
+                    item.classification
+                }
+            </p>
+          </div>
+          <div className="col-md-2">
+          <h6>
+                {
+                    type == "characters" ? "Height" : 
+                    type == "planets" ? "Climate" :
+                    "Average Lifespan"
+                }
+            </h6>
+            <p>
+                {
+                    type == "characters" ? item.height : 
+                    type == "planets" ? item.climate :
+                    item.average_lifespan
+                }
+            </p>
+          </div>
+          <div className="col-md-2">
+          <h6>
+                {
+                    type == "characters" ? "Birth Year" : 
+                    type == "planets" ? "Gravity" :
+                    "Language"
+                }
+            </h6>
+            <p>
+                {
+                    type == "characters" ? item.birth_year : 
+                    type == "planets" ? item.gravity :
+                    item.language
+                }
+            </p>
+          </div>
+          <div className="col-md-2">
+          <h6>
+                {
+                    type == "characters" ? "Mass" : 
+                    type == "planets" ? "Orbital Period" :
+                    "Average Height"
+                }
+            </h6>
+            <p>
+                {
+                    type == "characters" ? item.mass : 
+                    type == "planets" ? item.orbital_period :
+                    item.average_height
+                }
+            </p>
+          </div>
+          <div className="col-md-2">
+          <h6>
+                {
+                    type == "characters" ? "Hair Color" : 
+                    type == "planets" ? "Surface Water" :
+                    "Designation"
+                }
+            </h6>
+            <p>
+                {
+                    type == "characters" ? item.hair_color : 
+                    type == "planets" ? item.surface_water :
+                    item.designation
+                }
+            </p>
+          </div>
+        </div>
+      </>
+
+      <Link to="/" className="btn btn-primary my-4">
+        Back home
+      </Link>
+    </div>
+  );
+};
+
+Details.propTypes = {
+    match : PropTypes.object
 };
 
 export default Details;
-
-
 
 //ATTEMPT TWO//
 
@@ -144,10 +231,6 @@ export default Details;
 // };
 
 // export default Details;
-
-
-
-
 
 // ATTEMPT ONE//
 
