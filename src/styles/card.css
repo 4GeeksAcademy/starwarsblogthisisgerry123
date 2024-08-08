@@ -1,16 +1,20 @@
 .horizontal-scrollable {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 0;
-  }
-  
-  .horizontal-scrollable .card {
-    flex: 0 0 auto;
-    margin: 5px;
-    width: 18rem;
-  }
- FontAwesomeIcon{
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.horizontal-scrollable .card {
+  flex: 0 0 auto;
+  margin: 5px;
+  width: 18rem;
+}
+.cardHeart:hover {
+  cursor: pointer;
+  color: #cf1208 !important;
+}
+/* FontAwesomeIcon{
     color: red;
     background-color: red;
-  }
+  } */

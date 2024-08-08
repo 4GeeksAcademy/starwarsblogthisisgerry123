@@ -50,7 +50,10 @@ const Card = ({ item, type, onFavoriteClick }) => {
             : `Language: ${item.language}`}
         </p>
         <div className="d-flex justify-content-between align-items-center mt-auto">
-          <Link to={`/details/${type}/${itemId}`} className="btn btn-primary">
+          <Link
+            to={`/details/${type}/${itemId}`}
+            className="btn btn-primary mt-0"
+          >
             Learn more!
           </Link>
           <FontAwesomeIcon

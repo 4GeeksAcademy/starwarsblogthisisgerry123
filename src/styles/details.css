@@ -1,30 +1,33 @@
 .container {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+.detail-main h1,
+.detail-main p {
+  color: #48555a;
 }
 
 .details-info {
-    border-top: 2px solid red;
-    padding-top: 10px;
-    margin-top: 20px;
+  border-top: 2px solid red;
+  padding-top: 10px;
+  margin-top: 20px;
 }
 
 .details-info h6 {
-    color: red;
-    text-transform: uppercase;
-    margin-bottom: 5px;
+  color: red;
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .details-info p {
-    margin: 0;
-    font-size: 16px;
+  color: #48555a;
+  margin: 0;
+  font-size: 16px;
 }
 
 .btn {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
-
-
 
 /* USE WITH ATTEMPT TWO
 

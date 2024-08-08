@@ -1,25 +1,45 @@
+html,
 body {
-    padding-top: 0px;
-  }
-  
-  h2 {
-    color: red;
-    text-align: left;
-  }
-  
-  .container {
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .btn {
-    margin-top: 10px;
-  }
-  
+  background-color: black;
+}
+
+body {
+  padding-top: 0px;
+}
+
+h2 {
+  color: red;
+  text-align: left;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+/* 
+.btn {
+  margin-top: 10px;
+} */
+
 .scrollDiv {
   overflow-y: hidden !important;
 }
 .starwars-icon {
   width: 100px;
-  height: 80px;
+  height: auto;
+  border-radius: 30%;
+}
+
+.navTrash {
+  cursor: pointer;
+  color: black;
+  transition: color 0.1 ease;
+}
+.navTrash:hover {
+  color: #cf1208;
+  transition: color 0.1s ease;
 }
